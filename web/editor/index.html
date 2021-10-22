@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <textarea id="data-html"></textarea>
+        <button id="update">적용</button>
+        <iframe id="dp-html">
+        </iframe>
+    </body>
+    <script>
+        const dataHtmlDom = document.getElementById("data-html");
+        const dpHtmlDom = document.getElementById("dp-html");
+        const updateButton = document.getElementById("update");
+
+        updateButton.onclick = () => {
+            const writedDom = dataHtmlDom.value;
+            console.log(writedDom);
+            console.log(typeof writedDom);
+            dpHtmlDom.contentWindow.document.write(writedDom);
+        };
+    </script>
+</html>

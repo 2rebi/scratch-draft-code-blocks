@@ -1,0 +1,67 @@
+<html>
+    <body>
+        <canvas id="draw" width="500" height="500" />
+        <script>
+            let dy = -0.86;
+            let dx = 0.5;
+
+            let y = 200;
+            let x = 200;
+            let speed = 300;
+            // const acce = 100;
+            const width = 10;
+            const height = 10;
+
+            const canvas = document.getElementById("draw");
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = 'green';
+            ctx.fillRect(0, 0, width, height);
+
+
+            let prevTime = Date.now();
+
+            function loop() {
+                update();
+                draw();
+                requestAnimationFrame(loop);
+            }
+
+            function update() {
+                const now = Date.now();
+                const diffTime = now - prevTime;
+                prevTime = now;
+
+                const delta = diffTime / 1000.0;
+                // speed += acce * delta;
+                x += speed * dx * delta;
+                y += speed * dy * delta;
+                // if (x >= canvas.width) {
+                //     x = 0;
+                // }
+                if (x <= 0) {
+                    x = 0
+                    dx = -dx;
+                } else if (x >= canvas.width) {
+                    x = canvas.height;
+                    dx = -dx;
+                }
+
+                if (y <= 0) {
+                    y = 0
+                    dy = -dy;
+                } else if (y >= canvas.height) {
+                    y = canvas.height;
+                    dy = -dy;
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0,0,canvas.width,canvas.height)
+                ctx.fillRect(x, y, width, height);
+            }
+
+            loop();
+        </script>
+    </body>
+</html>
