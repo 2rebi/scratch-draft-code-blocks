@@ -2,19 +2,15 @@
     <body>
         <canvas id="draw" width="500" height="500" />
         <script>
-            let dy = -0.86;
-            let dx = 0.5;
-
-            let y = 200;
-            let x = 200;
-            let speed = 300;
-            const width = 10;
-            const height = 10;
+            let y = -1;
+            let x = -1;
 
             const canvas = document.getElementById("draw");
             const ctx = canvas.getContext('2d');
             canvas.onmousemove = (e) => {
-                drawLine(ctx, x, y, e.offsetX, e.offsetY);
+                if (x !== -1 && y !== -1) {
+                    drawLine(ctx, x, y, e.offsetX, e.offsetY);
+                }
                 x = e.offsetX;
                 y = e.offsetY;
             };
