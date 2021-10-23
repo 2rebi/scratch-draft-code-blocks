@@ -1,0 +1,32 @@
+<html>
+    <body>
+        <canvas id="draw" width="500" height="500" />
+        <script>
+            let dy = -0.86;
+            let dx = 0.5;
+
+            let y = 200;
+            let x = 200;
+            let speed = 300;
+            const width = 10;
+            const height = 10;
+
+            const canvas = document.getElementById("draw");
+            const ctx = canvas.getContext('2d');
+            canvas.onmousemove = (e) => {
+                drawLine(ctx, x, y, e.offsetX, e.offsetY);
+                x = e.offsetX;
+                y = e.offsetY;
+            };
+            function drawLine(context, x1, y1, x2, y2) {
+                context.beginPath();
+                context.strokeStyle = 'black';
+                context.lineWidth = 1;
+                context.moveTo(x1, y1);
+                context.lineTo(x2, y2);
+                context.stroke();
+                context.closePath();
+            }
+        </script>
+    </body>
+</html>
